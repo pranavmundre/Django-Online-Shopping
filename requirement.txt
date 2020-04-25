@@ -1,2 +1,3 @@
 django-admin=3.0
 python-decouple
+psycopg2
