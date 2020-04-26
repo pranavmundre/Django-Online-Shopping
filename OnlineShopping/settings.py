@@ -28,7 +28,7 @@ DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = []
 
-SITE_URL = 'http://127.0.0.1:8080/'
+SITE_URL = 'http://127.0.0.1:8080'
 
 # Application definition
 

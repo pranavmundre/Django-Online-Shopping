@@ -23,24 +23,32 @@ class Product_List(admin.ModelAdmin):
 	readonly_fields = ('preview_product',)
 
 	def get_image(self, obj):
+		# image = ''
 		if obj.image:
-			image = '<img src="'+SITE_URL+'media/'+str(obj.image)+'" title="'+obj.title+'" alt="'+obj.title+'" height="40" />'
+			image = '<img src="'+SITE_URL+'/media/'+str(obj.image)+'" title="'+obj.title+'" alt="'+obj.title+'" height="40" />'
 		else:
-			image = '<img src="'+SITE_URL+'media/product_image/default_product_image.png" title="'+obj.title+'" alt="'+obj.title+'" height="40" />'
+			image = '<img src="'+SITE_URL+'/media/product_image/default_product_image.png" title="'+obj.title+'" alt="'+obj.title+'" height="40" />'
 
 		
 		return mark_safe(image)
 
 	def preview_product(self, obj):
-		url = '<a href="'+SITE_URL+'product/'+obj.slug+'" target="'+obj.slug+'" >'+SITE_URL+'product/'+obj.slug+'/</a>' 
+		url = '<a href="'+SITE_URL+'/product/'+obj.slug+'" target="'+obj.slug+'" >'+SITE_URL+'/product/'+obj.slug+'/</a>' 
 		return mark_safe(url)
 
 	get_image.short_description = 'Image'
 
 class Category_List(admin.ModelAdmin):
-	list_display = ('category_name',)
+	list_display = ('name', 'get_slug')
+	list_display_links = ('name', 'get_slug')
+	prepopulated_fields = {'slug': ('name',), }
 	# list_filter = ('category_name' , '',)
 
+	def get_slug(self, obj):
+		url = '<a href="'+SITE_URL+'/product/'+obj.slug+'" target="'+obj.slug+'" >'+SITE_URL+'product/'+obj.slug+'/</a>' 
+		return mark_safe(url)
+
+	get_slug.short_description = 'Slug'
 
 # class Attribute_List(admin.ModelAdmin):
 # 	pass
@@ -59,5 +67,5 @@ class Variant_List(admin.ModelAdmin):
 
 admin.site.register(Product, Product_List)
 admin.site.register(Attribute)
-admin.site.register(Category)
+admin.site.register(Category, Category_List)
 admin.site.register(Variant, Variant_List)

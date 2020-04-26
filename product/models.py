@@ -6,15 +6,16 @@ class Product(models.Model):
 	title = models.CharField(max_length=120 )
 	slug = models.SlugField(unique=True)
 
+	# short_description  = models.TextField(null=True, blank=True)
 	description  = models.TextField(null=True, blank=True)
-	image = models.ImageField(upload_to='product_image/%Y/%m/%d', null=True, blank=True)
+	image = models.ImageField(upload_to='product_image/%Y/%m/%d', default='product_image/default_product_image.png' , null=True, blank=True)
 	price  = models.DecimalField(decimal_places=2 , max_digits=100, )
 	sale_price  = models.DecimalField(decimal_places=2, max_digits=100, null=True, blank=True)
 	stock = models.PositiveIntegerField()
 	product_category = models.ManyToManyField('Category', )
 
 	allow_variants = models.BooleanField(default=False)
-	product_variants = models.ManyToManyField( 'Attribute', related_name='product_attribute' )
+	product_variants = models.ManyToManyField( 'Attribute', related_name='product_attribute' , null=True, blank=True )
 
 	created_date = models.DateTimeField(auto_now_add=True, auto_now=False)
 	updated_date = models.DateTimeField(auto_now_add =False ,auto_now=True)
@@ -37,10 +38,11 @@ class Product(models.Model):
 
 class Category(models.Model):
 	# parent_id = models.CharField( max_length=120,  blank=True, null=True )
-	category_name = models.CharField(max_length=120, unique=True)
+	name = models.CharField(max_length=120, unique=False)
+	slug = models.SlugField(unique=True)
 
 	def __str__(self):
-		return self.category_name
+		return self.name
 
 
 class Attribute(models.Model):
