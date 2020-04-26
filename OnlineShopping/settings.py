@@ -28,6 +28,7 @@ DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = []
 
+SITE_URL = 'http://127.0.0.1:8080/'
 
 # Application definition
 
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
 	'django.contrib.staticfiles',
 
 	'store',
+	'product',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +139,12 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR+'/media/'
 
  
+
+#---------GOOGLE RECHAPCHA-------------
+# V3
+GOOGLE_RECAPTCHA_SITE_KEY_V3 = config('GOOGLE_RECAPTCHA_SITE_KEY_V3')
+GOOGLE_RECAPTCHA_SECRET_KEY_V3 = config('GOOGLE_RECAPTCHA_SECRET_KEY_V3')
+
+# V2
+GOOGLE_RECAPTCHA_SITE_KEY_V2 = config('GOOGLE_RECAPTCHA_SITE_KEY_V2')
+GOOGLE_RECAPTCHA_SECRET_KEY_V2 = config('GOOGLE_RECAPTCHA_SECRET_KEY_V2')

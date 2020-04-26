@@ -15,3 +15,8 @@ def sign_out(request):
 def register(request):
 	pass
 
+def sitemap(request):
+	context= {'data': 'pranav',}
+	# return HttpResponse("welcome")
+	return render(request, 'sitemap.xml', context=context,   content_type = 'application/xml', )
+	
