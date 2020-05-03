@@ -24,12 +24,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG')
+DEBUG = True
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
-ALLOWED_HOSTS = []
-
+# Add site url without add '/' slash at the end
 SITE_URL = 'http://127.0.0.1:8080'
-
+APPLICATION_NAME = 'Online Shopping'
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,6 +42,9 @@ INSTALLED_APPS = [
 
 	'store',
 	'product',
+
+	'imagekit',
+	'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -67,6 +70,8 @@ TEMPLATES = [
 				'django.template.context_processors.request',
 				'django.contrib.auth.context_processors.auth',
 				'django.contrib.messages.context_processors.messages',
+
+				'store.context_processors.site_info',
 			],
 		},
 	},
@@ -137,8 +142,8 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR+'/media/'
+FULL_MEDIA_URL = SITE_URL+MEDIA_URL
 
- 
 
 #---------GOOGLE RECHAPCHA-------------
 # V3

@@ -1,3 +1,5 @@
+from OnlineShopping.settings import SITE_URL, FULL_MEDIA_URL
+
 from django.shortcuts import render
 from django.http import HttpResponse
 
