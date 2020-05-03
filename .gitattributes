@@ -1,4 +1,4 @@
-*.py linguist-detectable=Solidity
+*.py linguist-language=Python
 *.css linguist-detectable=false
 *.js linguist-detectable=false
 *.html linguist-detectable=false
