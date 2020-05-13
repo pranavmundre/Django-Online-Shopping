@@ -157,7 +157,9 @@ GOOGLE_RECAPTCHA_SECRET_KEY_V2 = config('GOOGLE_RECAPTCHA_SECRET_KEY_V2')
 
 
 # Thumbnail setting 
-THUMBNAIL_DEBUG = True
-THUMBNAIL_BACKEND = 'sorl.thumbnail.base.ThumbnailBackend'
-THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.cached_db_kvstore.KVStore'
-THUMBNAIL_ENGINE = 'sorl.thumbnail.engines.pil_engine.Engine'
+THUMBNAIL_DEBUG = DEBUG
+THUMBNAIL_PREFIX  = 'cache/'
+THUMBNAIL_BACKEND = 'store.set_thumbnail_name.SEOThumbnailBackend'
+# THUMBNAIL_BACKEND = 'sorl.thumbnail.base.ThumbnailBackend'
+# THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.cached_db_kvstore.KVStore'
+# THUMBNAIL_ENGINE = 'sorl.thumbnail.engines.pil_engine.Engine'
