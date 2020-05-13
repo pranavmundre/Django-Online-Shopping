@@ -19,6 +19,10 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
+from django.conf.urls import handler404, handler500
+from store import views as store_views
+
+
 admin.site.site_header = 'Shopping Administration'                    # default: "Django Administration"
 # admin.site.index_title = 'Hotel Administration'                 # default: "Site administration"
 # admin.site.site_title = 'Admin Of Online Hotel Management' # default: "Django site admin"
@@ -34,6 +38,6 @@ urlpatterns = [
 
 ] + static(settings.MEDIA_URL , document_root=settings.MEDIA_ROOT)
 
-
+handler404 = store_views.error_400
 #  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # + static(settings.MEDIA_URL , document_root=settings.MEDIA_ROOT)

@@ -19,3 +19,6 @@
 .sale h3 {
     display: inline;
 }
+footer section.footer-section h2 {
+    color: white;
+}

@@ -25,11 +25,11 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost','192.168.43.142']
 
 # Add site url without add '/' slash at the end
-SITE_URL = 'http://127.0.0.1:8080'
-APPLICATION_NAME = 'Online Shopping'
+SITE_URL = config('SITE_URL')
+APPLICATION_NAME = config('APPLICATION_NAME')
 # Application definition
 
 INSTALLED_APPS = [

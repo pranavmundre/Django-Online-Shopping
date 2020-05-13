@@ -70,8 +70,8 @@ class ProductAdmin(admin.ModelAdmin):
 	get_category.short_description = 'Category'
 
 class CategoryAdmin(admin.ModelAdmin):
-	list_display = ('name', 'get_slug')
-	list_display_links = ('name', 'get_slug')
+	list_display = ('get_name', 'get_slug')
+	list_display_links = ('get_name', 'get_slug')
 	prepopulated_fields = {'slug': ('name',), }
 	# list_filter = ('category_name' , '',)
 
@@ -79,7 +79,19 @@ class CategoryAdmin(admin.ModelAdmin):
 		url = '<a href="'+SITE_URL+'/product/'+obj.slug+'" target="'+obj.slug+'" >'+SITE_URL+'/product/'+obj.slug+'/</a>' 
 		return mark_safe(url)
 
+	def get_name(self, obj):
+		
+		if obj.parent:
+			cat_data = Category.objects.get(id=obj.parent_id)
+			cat = str(obj.name)+ '-->'+str(cat_data.name)
+		else:
+			cat = obj.name
+
+
+		return cat 
+
 	get_slug.short_description = 'Slug'
+	get_name.short_description = 'Category'
 
 # class AttributeAdmin(admin.ModelAdmin):
 # 	pass

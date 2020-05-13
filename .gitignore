@@ -1,5 +1,11 @@
+*.log
+*.pot
+*.pyc
+/__pycache__/*
+product/__pycache__/*
+local_settings.py
+
 .env
-OnlineShopping/__pycache__/
-store/__pycache__
-store/migrations/__pycache__/
-product/migrations/__pycache__/
+db.sqlite3
+migrations
+media/*

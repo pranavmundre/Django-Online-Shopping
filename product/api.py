@@ -23,7 +23,6 @@ def get_product_list(request ):
 		serializer = ProductSerializer( products, many=True )
 		print("testz=ok")
 	except Exception as e:
-		print("test=ok")
 		return Response(status=status.HTTP_400_BAD_REQUEST)
 		# raise e
 	return Response(serializer.data )

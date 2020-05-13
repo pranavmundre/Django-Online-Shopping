@@ -17,7 +17,7 @@ class Product(models.Model):
 	slug = models.SlugField(unique=True)
 	short_description  = models.TextField( max_length=100 ,null=True, blank=True)
 	description  = models.TextField(null=True, blank=True)
-	featured_image = models.ImageField(upload_to='product_image/%Y/%m/%d', default='product_image/default_product_image.png' , null=True, blank=True)
+	featured_image = models.ImageField(upload_to='product_image/%Y/%m/%d', default='product_image/default_product_image.png',verbose_name = 'Picture' , null=True, blank=True)
 	category = models.ManyToManyField('Category',  blank=True, related_name='category' )
 
 	product_type = models.CharField(max_length=18, choices=PRODUCT_TYPE, default='simple_product' )
@@ -67,10 +67,9 @@ class ProductImage(models.Model):
 	# 	return self.image
 		
 class Category(models.Model):
-	# parent_id = models.CharField( max_length=120,  blank=True, null=True )
-	# product = models.ForeignKey('Product', on_delete=models.CASCADE,  related_name='product_data'  )
 	name = models.CharField(max_length=120, unique=False)
 	slug = models.SlugField(unique=True)
+	parent = models.ForeignKey('self', on_delete=models.CASCADE,  related_name='parent_category',  null=True, default=0 , blank=True,  )
 
 	def __str__(self):
 		return self.name
@@ -80,7 +79,7 @@ class Category(models.Model):
 		return self.category.name
 
 	@property
-	def category_name(self):
+	def get_category_slug(self):
 		return self.category.slug
 
 

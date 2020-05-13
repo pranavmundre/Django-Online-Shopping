@@ -14,7 +14,11 @@
 			<h4>{{page_titile}}</h4>
 			<div class="site-pagination">
 				<a href="{% url 'home' %}">Home</a> /
-				<a href="">Shop</a> /
+				<a href="{% url 'shop_page' %}">Shop</a> /
+				{% if category_name %}
+					<a  >{{category_name}}</a> /
+				{% endif %}
+
 			</div>
 		</div>
 	</div>
