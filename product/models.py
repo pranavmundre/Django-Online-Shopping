@@ -2,8 +2,6 @@ from django.db import models
 from django.utils import timezone
 from django.core.validators import MinValueValidator , MaxValueValidator
 
-from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFill
 
 # Create your models here.
 
@@ -41,8 +39,11 @@ class Product(models.Model):
 	def __str__(self):
 		return self.title
 
-	
-
+	@property
+	def thumbnail(self):
+		if self.featured_image:
+			return get_thumbnail(self.featured_image, '50x50', quality=90)
+		return None
 
 class Price(models.Model):
 	product = models.OneToOneField('Product', on_delete=models.CASCADE,  )

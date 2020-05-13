@@ -43,8 +43,8 @@ INSTALLED_APPS = [
 	'store',
 	'product',
 
-	'imagekit',
 	'rest_framework',
+	'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [
@@ -153,3 +153,11 @@ GOOGLE_RECAPTCHA_SECRET_KEY_V3 = config('GOOGLE_RECAPTCHA_SECRET_KEY_V3')
 # V2
 GOOGLE_RECAPTCHA_SITE_KEY_V2 = config('GOOGLE_RECAPTCHA_SITE_KEY_V2')
 GOOGLE_RECAPTCHA_SECRET_KEY_V2 = config('GOOGLE_RECAPTCHA_SECRET_KEY_V2')
+
+
+
+# Thumbnail setting 
+THUMBNAIL_DEBUG = True
+THUMBNAIL_BACKEND = 'sorl.thumbnail.base.ThumbnailBackend'
+THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.cached_db_kvstore.KVStore'
+THUMBNAIL_ENGINE = 'sorl.thumbnail.engines.pil_engine.Engine'

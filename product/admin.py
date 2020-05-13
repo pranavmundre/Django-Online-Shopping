@@ -7,6 +7,9 @@ from django.utils.html import format_html
 
 import math
 from OnlineShopping.settings import SITE_URL, FULL_MEDIA_URL
+
+from sorl.thumbnail import get_thumbnail 
+
 # Register your models here.
 
 
@@ -47,7 +50,8 @@ class ProductAdmin(admin.ModelAdmin):
 	def get_featured_image(self, obj):
 		# image = ''
 		if obj.featured_image:
-			image = '<img src="'+FULL_MEDIA_URL+str(obj.featured_image)+'" title="'+obj.title+'" alt="" height="40" />'
+			thumb_url = get_thumbnail(obj.featured_image, '60x60', crop='center', quality=60)
+			image = '<img src="'+FULL_MEDIA_URL+str(thumb_url)+'" title="'+obj.title+'" alt="" height="40" />'
 		else:
 			image = '<img src="'+FULL_MEDIA_URL+'product_image/default_product_image.png" title="'+obj.title+'" alt="" height="40" />'
 

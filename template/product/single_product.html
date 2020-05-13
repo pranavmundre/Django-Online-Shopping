@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
 {% load static %}
+{% load thumbnail  %}
 
 
 {% block 'title' %} {{product.title}} - {{APPLICATION_NAME}} {% endblock %}
@@ -33,11 +34,20 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="product-pic-zoom">
-						<img class="product-big-img" src="{{FULL_MEDIA_URL}}{{product.featured_image}}" alt="">
+						<!-- <img class="product-big-img" src="{{FULL_MEDIA_URL}}{{product.featured_image}}" alt=""> -->
+
+						{% thumbnail product.featured_image "500x500" crop="center" as img %}
+						    <img src="{{ img.url }}"  class="product-big-img">
+						{% endthumbnail %}
 					</div>
 					<div class="product-thumbs" tabindex="1" style="overflow: hidden; outline: none;">
 						<div class="product-thumbs-track">
-							<div class="pt active" data-imgbigurl="{{FULL_MEDIA_URL}}{{product.featured_image}}"><img src="{{FULL_MEDIA_URL}}{{product.featured_image}}" alt=""></div>
+							<div class="pt active" data-imgbigurl="{{FULL_MEDIA_URL}}{{product.featured_image}}">
+								{% thumbnail product.featured_image "120x120" crop="center" as thumbnail %}
+									<img src="{{thumbnail.url}}" alt="">
+								{% endthumbnail %}
+
+							</div>
 							<div class="pt" data-imgbigurl="img/single-product/2.jpg"><img src="img/single-product/thumb-2.jpg" alt=""></div>
 							<!-- <div class="pt" data-imgbigurl="img/single-product/3.jpg"><img src="img/single-product/thumb-3.jpg" alt=""></div>
 							<div class="pt" data-imgbigurl="img/single-product/4.jpg"><img src="img/single-product/thumb-4.jpg" alt=""></div> -->
