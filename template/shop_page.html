@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% load static %}
-
+{% load thumbnail  %}
 
 {% block 'add_in_head' %}
  
@@ -173,7 +173,9 @@
 									<div class="pi-pic">
 										<div class="tag-sale">ON SALE</div>
 										<a href="{% url 'product_page' product.slug %}">
-											<img src="{{FULL_MEDIA_URL}}{{product.featured_image}}" alt="">
+											{% thumbnail product.featured_image "250x300" crop="center" as img %}
+												<img src="{{ img.url }}" alt="">
+											{% endthumbnail %}
 										</a>
 										<div class="pi-links">
 											<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>

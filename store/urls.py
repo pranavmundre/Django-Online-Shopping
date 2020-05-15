@@ -1,4 +1,4 @@
-from . import views
+from . import views, common_method
 
 from django.contrib import admin
 from django.urls import path
@@ -20,4 +20,8 @@ urlpatterns = [
 	url(r'^robots.txt$', TemplateView.as_view(template_name='robots.txt', content_type = 'text/plain')),
 	# url(r'^sitemap.xml$', TemplateView.as_view(template_name='sitemap.xml', content_type = 'application/xml')),
 	url(r'^sitemap.xml$', views.sitemap, name='sitemap'),
+
+
+	path('test/', common_method.create_qr_code, name='Test'),
+
 ] 

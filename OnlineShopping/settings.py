@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
 	'rest_framework',
 	'sorl.thumbnail',
+	'pwa',
 ]
 
 MIDDLEWARE = [
@@ -163,3 +164,7 @@ THUMBNAIL_BACKEND = 'store.set_thumbnail_name.SEOThumbnailBackend'
 # THUMBNAIL_BACKEND = 'sorl.thumbnail.base.ThumbnailBackend'
 # THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.cached_db_kvstore.KVStore'
 # THUMBNAIL_ENGINE = 'sorl.thumbnail.engines.pil_engine.Engine'
+
+
+
+

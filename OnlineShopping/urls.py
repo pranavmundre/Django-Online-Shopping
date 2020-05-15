@@ -19,8 +19,8 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
-from django.conf.urls import handler404, handler500
-from store import views as store_views
+from django.conf.urls import handler404, handler500, url
+from store import views as store_views, pwa_views  
 
 
 admin.site.site_header = 'Shopping Administration'                    # default: "Django Administration"
@@ -32,6 +32,10 @@ urlpatterns = [
 	path('', include('store.urls')),
 	path('product/', include('product.urls')),
 	path('superadmin/', admin.site.urls),
+
+	path('pwa/', include('pwa.urls')),
+	url(r'^serviceworker.js$', pwa_views.service_worker),
+    url(r'^manifest.json$', pwa_views.manifest),
 
 	# API URLS
 	path('api/product/', include('product.api_urls')),

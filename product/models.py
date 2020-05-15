@@ -5,6 +5,18 @@ from django.core.validators import MinValueValidator , MaxValueValidator
 
 # Create your models here.
 
+'''
+def validate_image(image):
+    file_size = image.file.size
+    # limit_kb = 150
+    # if file_size > limit_kb * 1024:
+    #     raise ValidationError("Max size of file is %s KB" % limit)
+
+    limit_mb = 2
+    if file_size > limit_mb * 1024 * 1024:
+       raise ValidationError("Max size of file is %s MB" % limit_mb)
+
+'''
 class Product(models.Model):
 	PRODUCT_TYPE = (
 			('simple_product', 'Simple Product'),
@@ -15,7 +27,8 @@ class Product(models.Model):
 	slug = models.SlugField(unique=True)
 	short_description  = models.TextField( max_length=100 ,null=True, blank=True)
 	description  = models.TextField(null=True, blank=True)
-	featured_image = models.ImageField(upload_to='product_image/%Y/%m/%d', default='product_image/default_product_image.png',verbose_name = 'Picture' , null=True, blank=True)
+	featured_image = models.ImageField(upload_to='product_image/%Y/%m/%d', default='product_image/default_product_image.png',verbose_name = 'Product Image' , null=True, blank=True, )
+	# featured_image = models.ImageField(upload_to='product_image/%Y/%m/%d', default='product_image/default_product_image.png',verbose_name = 'Product Image' , null=True, blank=True, validators=[validate_image])
 	category = models.ManyToManyField('Category',  blank=True, related_name='category' )
 
 	product_type = models.CharField(max_length=18, choices=PRODUCT_TYPE, default='simple_product' )

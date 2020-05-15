@@ -8,6 +8,37 @@
 
 {% block 'contents' %}
 	<!-- Hero section -->
+<script type="text/javascript">
+function notifyMe() {
+	// Let's check if the browser supports notifications
+	if (!("Notification" in window)) {
+		alert("This browser does not support desktop notification");
+	}
+
+	// Let's check whether notification permissions have already been granted
+	else if (Notification.permission === "granted") {
+		// If it's okay let's create a notification
+		var notification = new Notification('asfa');
+	}
+
+	// Otherwise, we need to ask the user for permission
+	else if (Notification.permission !== "denied") {
+		Notification.requestPermission().then(function (permission) {
+			// If the user accepts, let's create a notification
+			console.log("sorry")
+			if (permission === "granted") {
+				var notification = new Notification("Hi there! sorry");
+			}
+		});
+	}
+
+	// At last, if the user has denied notifications, and you 
+	// want to be respectful there is no need to bother them any more.
+}
+</script>
+<div class="container" style="display: none;">
+	<button onclick="notifyMe()" class="btn btn-primary">Notify me!</button>
+</div>
 	<section class="hero-section">
 		<div class="hero-slider owl-carousel">
 			<div class="hs-item set-bg" data-setbg="{% static 'theme_assets/img/bg.jpg' %}">

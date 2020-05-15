@@ -1,6 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import json
+import os
+from OnlineShopping.settings import SITE_URL, FULL_MEDIA_URL
+# from . import app_settings
+
+
 # Create your views here.
 
 from product.models import Product, Category
@@ -44,6 +49,7 @@ def get_categories(parent_id=True):
 	cat_data = {}
 	if type(parent_id) is bool:
 		categories = Category.objects.filter(parent__isnull=parent_id)
+
 	else:
 		categories = Category.objects.filter(parent=parent_id)
 
