@@ -10,6 +10,10 @@
 	<!-- Hero section -->
 <script type="text/javascript">
 function notifyMe() {
+	option = {
+		title: 'pranav \n Welcome',
+		body: 'Welcome'
+	}
 	// Let's check if the browser supports notifications
 	if (!("Notification" in window)) {
 		alert("This browser does not support desktop notification");
@@ -18,7 +22,7 @@ function notifyMe() {
 	// Let's check whether notification permissions have already been granted
 	else if (Notification.permission === "granted") {
 		// If it's okay let's create a notification
-		var notification = new Notification('asfa');
+		var notification = new Notification( option.title );
 	}
 
 	// Otherwise, we need to ask the user for permission
@@ -35,9 +39,25 @@ function notifyMe() {
 	// At last, if the user has denied notifications, and you 
 	// want to be respectful there is no need to bother them any more.
 }
+
+function loadContent(url) {
+  window.fetch(url).then(x => x.text()).then(x => {
+    document.querySelector('.add-button').innerHTML = x;
+  });
+}
+window.addEventListener('popstate', ev => {  // for returning to previous page
+  loadContent(window.location.pathname);
+}
+document.addEventListener('click', ev => {  // for loading new pages on our domain
+  if (ev.target.localName == 'a' && ev.target.href.substr(0, 1) == '/') {
+    window.history.pushState(null, null, ev.target.href);
+    loadContent(url);
+  }
+});
 </script>
-<div class="container" style="display: none;">
+<div class="container"  style="display: none;">
 	<button onclick="notifyMe()" class="btn btn-primary">Notify me!</button>
+	<button class="add-button">Add to home screen</button>
 </div>
 	<section class="hero-section">
 		<div class="hero-slider owl-carousel">
