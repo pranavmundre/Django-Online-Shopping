@@ -6,3 +6,4 @@ python-decouple==3.3
 sorl-thumbnail==12.6.3
 pyqrcode==1.2.1
 django-pwa
+PyMySQL==0.9.3
