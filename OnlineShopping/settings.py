@@ -45,7 +45,8 @@ INSTALLED_APPS = [
 
 	'rest_framework',
 	'sorl.thumbnail',
-	'pwa',
+	# 'pwa',
+	'accounts',
 ]
 
 MIDDLEWARE = [
@@ -168,3 +169,45 @@ THUMBNAIL_BACKEND = 'store.set_thumbnail_name.SEOThumbnailBackend'
 
 
 
+#  REST FRAMEWORK SETTING START 
+
+DEFAULT_RENDERER_CLASSES = (
+	'rest_framework.renderers.JSONRenderer',
+)
+
+if DEBUG:
+	DEFAULT_RENDERER_CLASSES = DEFAULT_RENDERER_CLASSES + (
+		'rest_framework.renderers.BrowsableAPIRenderer',
+	)
+
+
+REST_FRAMEWORK = {
+	'DEFAULT_AUTHENTICATION_CLASSES': [
+		'rest_framework.authentication.BasicAuthentication',
+		'rest_framework.authentication.SessionAuthentication',
+		'rest_framework.authentication.TokenAuthentication',
+		
+	],
+	'DEFAULT_PERMISSION_CLASSES': (
+		# 'rest_framework.permissions.IsAdminUser',
+		# 'rest_framework.permissions.IsAuthenticated',
+	),
+	'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+	'PAGE_SIZE': 4,
+
+	# Disable browsable api
+	'DEFAULT_RENDERER_CLASSES': DEFAULT_RENDERER_CLASSES
+
+}
+
+
+#  REST FRAMEWORK SETTING END 
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' 
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'testsite_app'
+EMAIL_HOST_PASSWORD = 'mys3cr3tp4ssw0rd'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'TestSite Team <noreply@example.com>'
