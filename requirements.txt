@@ -1,6 +1,6 @@
 Django==3.0.5
 decorators==0.1.1
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 Pillow==7.1.2
 python-decouple==3.3
 sorl-thumbnail==12.6.3
